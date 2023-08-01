@@ -1,0 +1,72 @@
+<!-- begin panel -->
+<panel headerClass="bg-cyan-800 text-white" title="{{title}}">
+    <div>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Mail</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">RUT</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let u of users; index as i; ">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{u.givenName}}</td>
+                    <td>{{u.surname}}</td>
+                    <td>{{u.mail}}</td>
+                    <td>{{u.phone}}</td>
+                    <td>{{u.rut}}</td>
+                    <td>{{u.username}}</td>
+                    <td>
+                        <a href="#modal-dialog" class="btn btn-primary btn-xs" data-bs-toggle="modal" (click)="select(u)"><i
+                                class="far fa-pen-to-square fa-xs"></i></a>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- #modal-dialog -->
+    <div class="modal fade" id="modal-dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modificar usuario</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="updateForm">
+                        <div class="form-floating mt-15px">
+                            <input type="text" class="form-control h-45px fs-13px"
+                                placeholder="Nombre" id="givenName" formControlName="givenName" />
+                            <label for="givenName"
+                                class="d-flex align-items-center fs-13px text-gray-600">Nombre</label>
+                        </div>
+                        <div class="form-floating mt-15px">
+                            <input type="text" class="form-control h-45px fs-13px"
+                                placeholder="Apellido" id="surname" formControlName="surname" />
+                            <label for="surname"
+                                class="d-flex align-items-center fs-13px text-gray-600">Apellido</label>
+                        </div>
+                        <div class="form-floating mt-15px">
+                            <input type="text" class="form-control h-45px fs-13px"
+                                placeholder="Email" id="mail" formControlName="mail" />
+                            <label for="mail"
+                                class="d-flex align-items-center fs-13px text-gray-600">Email</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="javascript:;" class="btn btn-white" data-bs-dismiss="modal">Cerrar</a>
+                    <a href="javascript:;" class="btn btn-success"(click)="update()">Actualizar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</panel>

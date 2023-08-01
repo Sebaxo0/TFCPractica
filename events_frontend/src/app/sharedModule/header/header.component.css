@@ -1,0 +1,68 @@
+
+.dropdown-scroll {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+.dropdown-header span{
+  font-size: 1.2em;
+  font-weight: 100;
+}
+
+.dropdown-scroll > .dropdown-header > span:hover{
+  cursor: pointer;
+}
+
+.dropdown-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.navbar-danger {
+  background: #2ea7cb  ;
+}
+
+.notificacion {
+  min-width: 18rem;
+  max-width: 21rem;
+}
+
+.mtitulo { /*Asunto de las notificaciones (restringuir la visual)*/
+  overflow-x: hidden;
+  width: 55%;
+}
+
+.detalle {
+  display: block;
+}
+
+.t {
+  text-align: justify;
+}
+
+.tm {  /*Clase para tirar el eliminar y detalle a la derecha del media de notificaciones*/
+  overflow-x: hidden;
+  width: 70%;
+}
+
+.leido {
+  background: rgb(191, 214, 255);
+  border-radius: 5px;
+}
+
+.titleEntitys{
+  position: sticky;
+  top: 0;
+}
+
+.serchEntitys{
+  position: sticky;
+  top: 0;
+  /* background: red; */
+}
+
+
+.m-10{
+  margin: 10px;
+}
+.width-full{
+  width:100%;
+}

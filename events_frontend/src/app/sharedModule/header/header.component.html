@@ -1,0 +1,122 @@
+<!-- [ngClass]="{ 'app-header-inverse': this.appSettings.appHeaderInverse}" -->
+<div id="header" class="app-header" [class.app-header-inverse]="ambiente != 
+'https://sistemas.adventistas.cl/api-declaracion/'">
+	<div class="navbar-header">
+		<button type="button" class="navbar-mobile-toggler" *ngIf="this.appSidebarTwo"
+			(click)="toggleAppSidebarEndMobile()">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a href="javascript:;" class="navbar-brand"><img [src]="logo" width="25px"> Sistemas <b
+				class="text-info">UCh</b></a>
+		<button type="button" class="navbar-mobile-toggler" (click)="toggleAppTopMenuMobile()"
+			*ngIf="this.appSettings.appTopMenu && !this.appSettings.appSidebarNone">
+			<span class="fa-stack fa-lg text-inverse">
+				<i class="far fa-square fa-stack-2x"></i>
+				<i class="fa fa-cog fa-stack-1x"></i>
+			</span>
+		</button>
+		<span *ngIf="ambiente == 'https://testsistemas.adventistas.cl/api-declaracion/'" class="badge bg-warning "
+			style="font-size: 1.6em; border-radius: 5px; margin-left: 10px;">TESTING</span>
+		<button type="button" class="navbar-mobile-toggler" (click)="toggleAppHeaderMegaMenuMobile()"
+			*ngIf="this.appSettings.appHeaderMegaMenu">
+			<span class="fa-stack fa-lg text-inverse">
+				<i class="far fa-square fa-stack-2x"></i>
+				<i class="fa fa-cog fa-stack-1x"></i>
+			</span>
+		</button>
+		<button type="button" class="navbar-mobile-toggler" (click)="toggleAppSidebarMobile()"
+			*ngIf="!this.appSettings.appSidebarNone">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<button type="button" class="navbar-mobile-toggler" (click)="toggleAppTopMenuMobile()"
+			*ngIf="this.appSettings.appTopMenu && this.appSettings.appSidebarNone">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+
+	<div class="navbar-nav">
+
+		<div class="navbar-item  dropdown">
+			<a href="javascript:;" data-bs-toggle="dropdown" class="navbar-link dropdown-toggle d-flex icon">
+				<i class="fa fa-university"></i>
+				<span class="badge">{{(entities$ | async)?.length}}</span>
+			</a>
+			<div class="dropdown-menu media-list dropdown-menu-right ">
+				<div class="dropdown-header"><span> {{language.ENTITIES.TITLE}} ({{(entities$ | async)?.length}}) </span></div>
+				<div class="overflow-auto width-400" style="max-height: 600px;">
+					<div *ngFor="let entidades of (entities$ | async)">
+						<div class="text-center"><label class="mt-2 mb-2 ml-4"><strong>{{entidades.campo}}</strong></label></div>
+						<a *ngFor="let entidad of entidades.entidades" href="javascript:;" (click)="changeEntity(entidad)" class="dropdown-item media mb-2">
+							<div class="media-left">
+								<i class="text-info far fa-3x fa-fw m-r-10 fa-check-circle"></i>
+							</div>
+							<div class="media-body" >
+								<h6 class="media-heading">{{entidad.codigo}} {{entidad.grupo}} <label
+										class="label label-light">{{entidad.campo}}</label></h6>
+								<div class="text-muted f-s-11">{{entidad.nombre}}</div>
+							</div>
+						</a>
+					</div>
+					
+				</div>
+				<div *ngIf="(entities$ | async)?.length === 0">
+					<a href="javascript:;" class="dropdown-item media">
+						<div class="media-left">
+							<i class="text-danger far fa-3x fa-fw m-r-10 fa-times-circle"></i>
+						</div>
+						<div class="media-body ">
+							<h6 class="media-heading text-wrap">La entidad que esta buscando no se encontró o no tiene
+								acceso a ella.
+							</h6>
+						</div>
+					</a>
+				</div>
+				<div class="dropdown-footer text-center">
+					<a href="javascript:;"></a>
+				</div>
+			</div>
+		</div>
+		<div class="navbar-item dropdown" *ngIf="this.appSettings.appHeaderLanguageBar">
+			<a href="javascript:;" class="navbar-link dropdown-toggle" data-bs-toggle="dropdown">
+				<span class="flag-icon flag-icon-us" ></span>
+				<span class="d-none d-sm-inline ms-1"><span class="{{language.ICON}}"></span>  {{language.TITLE}}</span> 
+			</a>
+			<div class="dropdown-menu">
+				<a *ngFor="let l of languages" class="dropdown-item" (click)="changeLanguage(l.name)"><span class="{{l.icon}}"></span> {{l.language}}</a>
+			</div>
+		</div>
+		<div class="navbar-item navbar-user dropdown">
+			<a href="javascript:;" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" >
+				<img [src]="user_img" />
+				<span *ngIf="identity$" class="d-none d-md-inline">{{ (identity$ | async)?.displayName }}</span>
+			</a>
+			<div class="dropdown-menu dropdown-menu-end me-1">
+				<a class="dropdown-item pointer" [routerLink]="['/user/profile']">{{language.IDENTITY.EDIT_PROFILE}}</a>
+				<a class="dropdown-item pointer" [routerLink]="['/user/change-password']">{{language.IDENTITY.CHANGE_PASSWORD}}</a>
+				
+				<a href="javascript:;" class="dropdown-item">
+					<div class="form-check form-switch ms-auto mb-0">
+						<input type="checkbox" class="form-check-input" name="app-theme-dark-mode" id="appThemeDarkMode"
+							(change)="toggleDarkMode($event)" value="1" />
+						<label class="form-check-label" for="appThemeDarkMode">&nbsp;{{language.IDENTITY.DARK_MODE}}</label>
+					</div>
+				</a>
+				<div class="dropdown-divider"></div>
+				<a href="javascript:;" class="dropdown-item pointer" (click)="logout()">{{language.IDENTITY.LOGOUT}}</a>
+			</div>
+		</div>
+		<div class="navbar-divider d-none d-md-block" *ngIf="this.appSidebarTwo"></div>
+		<div class="navbar-item d-none d-md-block" *ngIf="this.appSidebarTwo">
+			<a href="javascript:;" (click)="toggleAppSidebarEnd()" class="navbar-link icon">
+				<i class="fa fa-th"></i>
+			</a>
+		</div>
+	</div>
+
+</div>

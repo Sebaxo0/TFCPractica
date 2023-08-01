@@ -1,0 +1,9 @@
+.black-box {
+    color: black;
+    background-color: rgba(246, 246, 246, 0.6);
+    border-radius: 0.5em;
+}
+
+.margin-left-3 {
+    margin-left: 1em;
+}

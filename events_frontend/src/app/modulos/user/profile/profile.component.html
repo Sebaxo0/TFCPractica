@@ -1,0 +1,83 @@
+<!-- begin panel -->
+<panel headerClass="bg-cyan-800 text-white" title="{{language.TITLE_COMPONENT}}">
+    <div class="row">
+        <form [formGroup]="userForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-floating mt-15px">
+                        <input type="text" class="form-control h-45px fs-13px" placeholder="{{language.DISPLAYNAME}}"
+                            id="" formControlName="displayName" />
+                        <label for=""
+                            class="d-flex align-items-center fs-13px text-gray-600">{{language.DISPLAYNAME}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-floating mt-15px">
+                        <input type="text" class="form-control h-45px fs-13px" placeholder="{{language.GIVEN_NAME}}"
+                            id="" formControlName="givenName" />
+                        <label for=""
+                            class="d-flex align-items-center fs-13px text-gray-600">{{language.GIVEN_NAME}}</label>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="form-floating mt-15px">
+                        <input type="text" class="form-control h-45px fs-13px" placeholder="{{language.SURNAME}}" id=""
+                            formControlName="surname" />
+                        <label for=""
+                            class="d-flex align-items-center fs-13px text-gray-600">{{language.SURNAME}}</label>
+                    </div>
+                </div>
+              
+                <div class="col-md-3">
+                    <div class="form-floating mt-15px">
+                        <input type="text" class="form-control h-45px fs-13px" placeholder="{{language.RUT}}"
+                            id="" formControlName="rut" />
+                        <label for=""
+                            class="d-flex align-items-center fs-13px text-gray-600">{{language.RUT}}</label>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-floating mt-15px">
+                        <input type="text" class="form-control h-45px fs-13px" placeholder="{{language.USERNAME}}"
+                            id="" formControlName="username" />
+                        <label for=""
+                            class="d-flex align-items-center fs-13px text-gray-600">{{language.USERNAME}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-floating mt-15px">
+                        <input type="text" class="form-control h-45px fs-13px" placeholder="{{language.MAIL}}" id=""
+                            formControlName="mail" />
+                        <label for=""
+                            class="d-flex align-items-center fs-13px text-gray-600">{{language.MAIL}}</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-floating mt-15px">
+                        <input type="text" class="form-control h-45px fs-13px" placeholder="{{language.PHONE}}" id=""
+                            formControlName="phone" />
+                        <label for=""
+                            class="d-flex align-items-center fs-13px text-gray-600">{{language.PHONE}}</label>
+                    </div>
+                </div>
+               
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-info btn-sm mt-5 " (click)="updateProfile()"> <i class="fas fa-pen-to-square"></i> {{language.UPDATE_PROFILE}}</button>
+            </div>
+
+            
+        </form>
+    </div>
+
+</panel>

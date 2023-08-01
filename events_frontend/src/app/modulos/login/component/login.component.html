@@ -1,0 +1,100 @@
+<!-- BEGIN login -->
+<div class="login login-v2 fw-bold">
+	<!-- BEGIN login-cover -->
+	<div class="login-cover">
+		<div class="login-cover-img" [ngStyle]="{ 'background-image': 'url(' + this.bg + ')' }"></div>
+		<div class="login-cover-bg"></div>
+	</div>
+	<!-- END login-cover -->
+
+	<!-- BEGIN login-container -->
+	<div class="login-container black-box">
+		<!-- BEGIN login-header -->
+		<div class="login-header mt-3">
+			<div class="brand">
+				<div class="d-flex align-items-center">
+					<img src="{{logo_iasd}}" width="40"> <b class="margin-left-3"> {{language.TEXT.WELCOME}} </b>
+				</div>
+				<small>{{language.TEXT.SUBTITLE}}</small>
+			</div>
+			<div class="icon">
+				<i class="fa fa-lock"></i>
+			</div>
+		</div>
+		<!-- END login-header -->
+
+		<!-- BEGIN login-content -->
+
+		<div class="login-content">
+			<div class="mb-20px row">
+				<!-- <a href="javascript:;" class="btn btn-social btn-white btn-microsoft d-block">
+					<i class="fab fa-microsoft"></i> Sign in with App.net
+				  </a> -->
+				<form [formGroup]="userLoginForm">
+					<div class="form-floating mt-15px">
+						<input type="text" class="form-control h-45px fs-13px"
+							placeholder="{{language.TEXT.PASSWORDPLACEHOLDER}}" id="usuario" formControlName="user" />
+						<label for="usuario"
+							class="d-flex align-items-center fs-13px text-gray-600">{{language.TEXT.USERPLACEHOLDER}}</label>
+					</div>
+					<div *ngIf="userLoginForm.get('user').errors && userLoginForm.get('user').touched">
+						<small class="invalid-feedback d-block" *ngIf="userLoginForm.get('user').hasError('required')">
+							El Usuario no es valido!</small>
+					</div>
+
+					<div class="form-floating mt-15px">
+						<input type="password" class="form-control h-45px fs-13px"
+							placeholder="{{language.TEXT.PASSWORDPLACEHOLDER}}" id="password"
+							formControlName="password" />
+						<label for="password"
+							class="d-flex align-items-center fs-13px text-gray-600">{{language.TEXT.PASSWORDPLACEHOLDER}}</label>
+					</div>
+					<div *ngIf="userLoginForm.get('password').errors && userLoginForm.get('password').touched">
+						<small class="invalid-feedback d-block" *ngIf="userLoginForm.get('password').errors">
+							La contraseña no es valida!</small>
+					</div>
+					<div class="mt-15px row">
+						<button type="submit" class="btn btn-success btn-block btn-lg" (click)="login()"
+							[disabled]="userLoginForm.invalid">{{language.BUTTONS.LOGINWITHOUTMICROSOFT}}
+						</button>
+					</div>
+				</form>
+
+				<!-- <div class=" mt-15px mb-40px pb-40px text-dark">
+					<a href="javascript:;" (click)="open(modalrecuperarclave)">¿Olvidaste tu contraseña?</a>
+				  </div> -->
+
+				<hr class="opacity-2 pb-40px" />
+				<button class="btn btn-white btn-microsoft d-block w-100 h-45px btn-lg" (click)="login()"><span
+						class="fab fa-microsoft"></span> {{ language.BUTTONS.LOGIN }}</button>
+
+				<!-- <div class="btn-group">
+					<a href="#" class="btn btn-group btn-white btn-microsoft d-block w-100 h-45px btn-lg" (click)="login()"><span class="fab fa-microsoft"></span>  Iniciar Sesión con Microsoft</a>
+				  </div> -->
+			</div>
+		</div>
+		<!-- END login-content -->
+	</div>
+	<!-- END login-container -->
+</div>
+<!-- END login -->
+
+<!-- BEGIN login-bg -->
+<div class="login-bg-list clearfix">
+	<div class="navbar-item dropdown">
+		<a href="javascript:;" class="btn btn-white navbar-link dropdown-toggle" data-bs-toggle="dropdown">
+			<span class="flag-icon flag-icon-us" title="us"></span>
+			<span class="d-none d-sm-inline ms-1"><span class="{{language.ICON}}"></span> {{language.TITLE}}</span>
+		</a>
+		<div class="dropdown-menu">
+			<a *ngFor="let l of languages" class="dropdown-item" (click)="changeLanguage(l.name)"><span
+					class="{{l.icon}}"></span> {{ l.language }} </a>
+		</div>
+	</div>
+
+</div>
+<!-- END login-bg -->
+
+<div *ngIf="cargando == true" id="loader" class="app-loader">
+	<span class="spinner"></span>
+</div>
